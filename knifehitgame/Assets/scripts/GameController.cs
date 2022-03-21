@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(GameUI))]
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private AudioSource Audio;
+    [SerializeField] private AudioClip nextLevelEffect;
     public static GameController Instance { get; private set; }
     [SerializeField]
     private int knifeCount;
@@ -63,6 +65,7 @@ public class GameController : MonoBehaviour
         if (win)
         {
             yield return new WaitForSecondsRealtime(0.3f);
+            Audio.PlayOneShot(nextLevelEffect);
             RestartGame();
         }
         else

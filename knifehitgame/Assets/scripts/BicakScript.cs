@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BicakScript : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource Audio;
+    [SerializeField] private AudioClip woodHitEffect;
+    [SerializeField] private AudioClip knifeHitEffect;
+    [SerializeField] private AudioClip knifeThrowEffect;
     [SerializeField]
     private Vector2 atisKuvveti;
 
@@ -22,6 +27,8 @@ public class BicakScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && isActive)
         {
+
+            Audio.PlayOneShot(knifeThrowEffect);
             rb.AddForce(atisKuvveti, ForceMode2D.Impulse);
             rb.gravityScale = 1;
             GameController.Instance.GameUI.DecrementDisplayedKnifeCount();
@@ -30,14 +37,18 @@ public class BicakScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+       
+
         if (!isActive)
             return;
 
         isActive = false;
 
+
         if (collision.collider.tag == "Kutuk")
         {
             GetComponent<ParticleSystem>().Play();
+            Audio.PlayOneShot(woodHitEffect);
             rb.velocity = new Vector2(0, 0);
             rb.bodyType = RigidbodyType2D.Kinematic;
             this.transform.SetParent(collision.collider.transform);
@@ -48,6 +59,7 @@ public class BicakScript : MonoBehaviour
         }
         else if (collision.collider.tag == "Bicak")
         {
+            Audio.PlayOneShot(knifeHitEffect);
             rb.velocity = new Vector2(rb.velocity.x, -2);
             GameController.Instance.StartGameOverSequence(false);
         }
