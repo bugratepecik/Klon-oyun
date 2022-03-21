@@ -24,7 +24,7 @@ public class BicakScript : MonoBehaviour
         {
             rb.AddForce(atisKuvveti, ForceMode2D.Impulse);
             rb.gravityScale = 1;
-            //Todo; kullanýlabilir býçak sayýsý eklenecek
+            GameController.Instance.GameUI.DecrementDisplayedKnifeCount();
         }
     }
 
@@ -37,18 +37,19 @@ public class BicakScript : MonoBehaviour
 
         if (collision.collider.tag == "Kutuk")
         {
+            GetComponent<ParticleSystem>().Play();
             rb.velocity = new Vector2(0, 0);
             rb.bodyType = RigidbodyType2D.Kinematic;
             this.transform.SetParent(collision.collider.transform);
 
             bicakCollider.offset = new Vector2(bicakCollider.offset.x, -0.4f);
             bicakCollider.size = new Vector2(bicakCollider.size.x, 1.2f);
-            // yeni býçak eklenecek 
+            GameController.Instance.OnSuccessfulKnifeHit(); 
         }
         else if (collision.collider.tag == "Bicak")
         {
             rb.velocity = new Vector2(rb.velocity.x, -2);
-
+            GameController.Instance.StartGameOverSequence(false);
         }
     }
 
