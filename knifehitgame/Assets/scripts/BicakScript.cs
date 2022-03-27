@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class BicakScript : MonoBehaviour
 {
-
+    public GameObject tekrarButton;
     [SerializeField] private AudioSource Audio;
     [SerializeField] private AudioClip woodHitEffect;
     [SerializeField] private AudioClip knifeHitEffect;
     [SerializeField] private AudioClip knifeThrowEffect;
     [SerializeField]
     private Vector2 atisKuvveti;
-
     private bool isActive = true;
 
     private Rigidbody2D rb;
@@ -62,6 +61,8 @@ public class BicakScript : MonoBehaviour
             Audio.PlayOneShot(knifeHitEffect);
             rb.velocity = new Vector2(rb.velocity.x, -2);
             GameController.Instance.StartGameOverSequence(false);
+            tekrarButton.SetActive(true);
+
         }
     }
 
