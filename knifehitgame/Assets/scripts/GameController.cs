@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
     {
         if (win)
         {
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(0.3f);
             Audio.PlayOneShot(nextLevelEffect);
             nextLevelButton.SetActive(true);
         }
