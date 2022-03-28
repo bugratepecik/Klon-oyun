@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0233f18b8981743419e0226cdf2bafb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab86a5ce764679499f33b2dea8d52be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tekrarButton: {fileID: 2845056277970556033, guid: 9d61c02b1af681c41b537401135cd0df, type: 3}
   Audio: {fileID: 7898356317678785138}
   woodHitEffect: {fileID: 8300000, guid: 221089c8e9f6faa48bdd662bc2a7e0df, type: 3}
   knifeHitEffect: {fileID: 8300000, guid: f7e41a8b622fb8e44a85d9b6482cb7c8, type: 3}

@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(GameUI))]
 public class GameController : MonoBehaviour
 {
     [SerializeField] private AudioSource Audio;
     [SerializeField] private AudioClip nextLevelEffect;
+    public GameObject restartButton;
+    public GameObject nextLevelButton;
     public static GameController Instance { get; private set; }
     [SerializeField]
     private int knifeCount;
@@ -17,6 +21,9 @@ public class GameController : MonoBehaviour
     private Vector2 knifeSpawnPosition;
     [SerializeField]
     private GameObject knifeObject;
+  
+    
+ 
 
     public GameUI GameUI { get; private set; }
 
@@ -66,16 +73,21 @@ public class GameController : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(0.3f);
             Audio.PlayOneShot(nextLevelEffect);
-            RestartGame();
+            nextLevelButton.SetActive(true);
         }
         else
         {
-            GameUI.ShowRestartButton();
+            restartButton.SetActive(true);
         }
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+    public void NextLevel()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
